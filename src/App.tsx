@@ -1,24 +1,47 @@
-import React from 'react'
-import logo from './logo.svg'
+import React, { useState } from 'react'
+import TodoList from './TodoList'
 import './App.css'
+import { Item, State } from './interface'
 
 const App: React.FC = () => {
+  const [state, setState] = useState({ items: [], text: '' } as State)
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault()
+    if (!state.text.length) {
+      return
+    }
+    const newItem: Item = {
+      text: state.text,
+      id: Date.now()
+    }
+    setState(state => ({
+      items: state.items.concat(newItem),
+      text: ''
+    }))
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setState({ items: state.items, text: e.target.value })
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h3>TODO</h3>
+      <TodoList items={state.items} />
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="new-todo">
+          What needs to be done?
+        </label>
+        <input
+          id="new-todo"
+          onChange={handleChange}
+          value={state.text}
+        />
+        <button>
+          Add #{state.items.length + 1}
+        </button>
+      </form>
     </div>
   )
 }
