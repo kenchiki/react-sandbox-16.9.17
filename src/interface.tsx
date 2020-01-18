@@ -4,6 +4,5 @@ export interface Item {
 }
 
 export interface State {
-  items: Array<Item>;
   text: string;
 }

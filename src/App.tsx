@@ -2,33 +2,36 @@ import React, { useState } from 'react'
 import TodoList from './TodoList'
 import './App.css'
 import { Item, State } from './interface'
+import { useDispatch, useSelector } from 'react-redux'
+import { addTodo } from './redux/actions'
 
 const App: React.FC = () => {
-  const [state, setState] = useState({ items: [], text: '' } as State)
+  const [state, setState] = useState({ text: '' } as State)
+  const dispatch = useDispatch()
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
     if (!state.text.length) {
       return
     }
-    const newItem: Item = {
-      text: state.text,
-      id: Date.now()
-    }
+    dispatch(addTodo(state.text))
     setState(state => ({
-      items: state.items.concat(newItem),
       text: ''
     }))
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setState({ items: state.items, text: e.target.value })
+    setState({ text: e.target.value })
   }
+
+  const todosSelector = (state: any) => state.todos
+  const todos: any = useSelector(todosSelector)
+  const items: Array<Item> = todos.items
 
   return (
     <div>
       <h3>TODO</h3>
-      <TodoList items={state.items} />
+      <TodoList items={items} />
       <form onSubmit={handleSubmit}>
         <label htmlFor="new-todo">
           What needs to be done?
@@ -39,7 +42,7 @@ const App: React.FC = () => {
           value={state.text}
         />
         <button>
-          Add #{state.items.length + 1}
+          Add #{items.length + 1}
         </button>
       </form>
     </div>
