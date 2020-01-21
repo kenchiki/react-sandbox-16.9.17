@@ -1,24 +1,39 @@
 import React from 'react'
-import logo from './logo.svg'
 import './App.css'
+import Pet from './component/Pet'
+import About from './component/About'
+import Nav from './component/Nav'
+import Login from './component/Login'
+import Logout from './component/Logout'
+import OauthCallback from './component/OauthCallback'
+import {
+  Switch,
+  Route, BrowserRouter as Router
+} from 'react-router-dom'
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Pet />
+      <Router>
+        <Nav />
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/logout">
+            <Logout />
+          </Route>
+          <Route path="/oauth_callback">
+            <OauthCallback />
+          </Route>
+          <Route path="/">
+          </Route>
+        </Switch>
+      </Router>
     </div>
   )
 }
