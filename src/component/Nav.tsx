@@ -19,9 +19,17 @@ const Nav: React.FC = () => {
           (() => {
             if (isLogin) {
               return (
-                <li>
-                  <Link to="/logout">ログアウト</Link>
-                </li>
+                <>
+                  <li>
+                    <Link to="/sent_letters">送った手紙</Link>
+                  </li>
+                  <li>
+                    <Link to="/received_letters">届いた手紙</Link>
+                  </li>
+                  <li>
+                    <Link to="/logout">ログアウト</Link>
+                  </li>
+                </>
               )
             } else {
               return (

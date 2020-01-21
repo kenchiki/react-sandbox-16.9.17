@@ -15,7 +15,7 @@ export default class Account {
   // title, urls.streaming_api
   public instance: object | null = null
   // display_name, id
-  public account: AccountInfo | null = null
+  public info: AccountInfo | null = null
 
   constructor () {
     this.restoreFromStorage()
@@ -27,14 +27,14 @@ export default class Account {
     this.clientId = this.localStorage.getItem('client_id')!
     this.clientSecret = this.localStorage.getItem('client_secret')!
     this.instance = JSON.parse(this.localStorage.getItem('instance')!)
-    this.account = JSON.parse(this.localStorage.getItem('account')!)
+    this.info = JSON.parse(this.localStorage.getItem('account')!)
   }
 
-  get avatar (): string { return this.account!.avatar }
-  get url (): string { return this.account!.url }
+  get avatar (): string { return this.info!.avatar }
+  get url (): string { return this.info!.url }
   get name (): string {
-    if (!this.account) return ''
-    return this.account!.display_name !== '' ? this.account!.display_name : this.account!.username
+    if (!this.info) return ''
+    return this.info!.display_name !== '' ? this.info!.display_name : this.info!.username
   }
 
   // ログインしているか

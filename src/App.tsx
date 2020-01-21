@@ -6,6 +6,9 @@ import Nav from './component/Nav'
 import Login from './component/Login'
 import Logout from './component/Logout'
 import OauthCallback from './component/OauthCallback'
+import ReceivedLetters from './component/ReceivedLetters'
+import SentLetters from './component/SentLetters'
+
 import {
   Switch,
   Route, BrowserRouter as Router
@@ -29,6 +32,12 @@ const App: React.FC = () => {
           </Route>
           <Route path="/oauth_callback">
             <OauthCallback />
+          </Route>
+          <Route path="/received_letters">
+            <ReceivedLetters />
+          </Route>
+          <Route path="/sent_letters">
+            <SentLetters />
           </Route>
           <Route path="/">
           </Route>

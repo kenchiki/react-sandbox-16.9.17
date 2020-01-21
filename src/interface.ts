@@ -1,12 +1,3 @@
-export interface Item {
-  text: string;
-  id: number;
-}
-
-export interface State {
-  text: string;
-}
-
 export interface AccountInfo {
   id: string;
   url: string;
@@ -14,4 +5,16 @@ export interface AccountInfo {
   display_name: string;
   username: string;
   avatar: string;
+}
+
+export interface TootInfo {
+  id: string;
+  accounts: Array<AccountInfo>
+  // eslint-disable-next-line camelcase
+  last_status: {
+    account: AccountInfo;
+    // eslint-disable-next-line camelcase
+    created_at: string;
+    content: string;
+  };
 }
