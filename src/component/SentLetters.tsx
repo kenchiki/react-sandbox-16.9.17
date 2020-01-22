@@ -1,21 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Account from '../lib/Account'
 import Letter from '../lib/Letter'
 import { AccountInfo, TootInfo } from '../interface'
 
+const account = new Account()
+const letter = new Letter(account)
+
 const SentLetters: React.FC = () => {
   const [state, setState] = useState({ letters: [] } as { letters: Array<TootInfo> })
   const accountSelector: any = useSelector((state: any) => state.account)
   const isLogin: boolean = accountSelector.isLogin
-  const account = new Account()
-  const letter = new Letter(account)
 
-  ;(async () => {
-    await letter.fetchLetters()
-    setState({ letters: letter.sentLetters() })
-  })()
+  useEffect(() => {
+    (async () => {
+      await letter.fetchLetters()
+      setState({ letters: letter.sentLetters() })
+    })()
+    // 一度だけしか実行したくないためsetStateを第二引数に設定
+  }, [setState])
 
   const pickMessage = function (message: TootInfo): string {
     let content: string = message.last_status.content
