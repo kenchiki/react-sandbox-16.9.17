@@ -18,8 +18,7 @@ const SentLetters: React.FC = () => {
       await letter.fetchLetters()
       setState({ letters: letter.sentLetters() })
     })()
-    // 一度だけしか実行したくないためsetStateを第二引数に設定
-  }, [setState])
+  }, [])
 
   const pickMessage = function (message: TootInfo): string {
     let content: string = message.last_status.content

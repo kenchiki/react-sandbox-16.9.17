@@ -7,16 +7,16 @@ import { login } from '../redux/actions'
 const OauthCallback: React.FC = () => {
   const query = new URLSearchParams(useLocation().search)
   const history = useHistory()
-  const dispatch: any = useDispatch()
 
-  const getCode = (): string => {
+  const pickCode = (query: URLSearchParams): string => {
     return query.get('code')!
   }
+  const dispatch: any = useDispatch();
 
-  ;(async () => {
+  (async () => {
     try {
       const account = new Account()
-      await account.fetchToken(getCode())
+      await account.fetchToken(pickCode(query))
       dispatch(login())
       history.push('/')
     } catch (error) {

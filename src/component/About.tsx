@@ -1,13 +1,19 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const template = (props: { }) => {
+const Component: React.FC = () => {
   return (
-    <div>
-      <p>テストページ</p>
+    <div className="about">
+      <div className="modal">
+        <div className="modal__header">説明書
+          <Link to="/">×</Link>
+        </div>
+        <div className="modal__in">
+          <p>マストドンのお友達からお手紙を書いたり、もらったりできるアプリです。</p>
+        </div>
+      </div>
     </div>
   )
 }
 
-const About = React.memo(template)
-
-export default About
+export default Component

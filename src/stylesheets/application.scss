@@ -1,0 +1,141 @@
+@import "bootstrap_variables";
+@import "~bootstrap/scss/bootstrap";
+@import "module_variables";
+@import "module/module";
+
+#wrapper {
+  margin-top: 50px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width: $global-width;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid #333;
+  border-radius: 5px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+#header-logo {
+  background: #0D67FE;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 1.4rem;
+}
+
+#container-row {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  width: $global-width;
+  background: #fff;
+  min-height: 400px;
+}
+
+#footer-status {
+  border-top: 1px solid #333;
+  padding: 5px 10px;
+  font-size: 1.2rem;
+}
+
+#container-col {
+  flex: 1;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+#header {
+  width: 106px;
+  background: #FDFFB9;
+  box-sizing: border-box;
+  border-right: 1px solid #333;
+  &, a {
+    color: rgba(#000, 0.8);
+  }
+
+  .header-nav {
+    &__links {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      padding: 20px 0;
+      & > * {
+        width: 80px;
+        margin-top: 20px;
+        text-align: center;
+        &:first-child {
+          margin-top: 0;
+        }
+        a {
+          display: block;
+          padding: 5px;
+          border: 1px solid #333;
+          font-size: 1rem;
+          background: #fff;
+        }
+      }
+    }
+  }
+}
+
+#content {
+  flex: 1;
+}
+
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  width: 400px;
+  height: 400px;
+  background: #fff;
+  border: 2px solid #333;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  &__header {
+    background: #0D67FE;
+    padding: 5px 10px;
+    overflow: hidden;
+    a, & {
+      color: #fff;
+      font-size: 1.2rem;
+    }
+    a {
+      float: right;
+    }
+  }
+  &__in {
+    flex: 1;
+    overflow-y: scroll;
+    padding: 15px;
+  }
+}
+
+.letters {
+  &__items {
+    font-size: 1.2rem;
+  }
+  &__item {
+    margin-top: 20px;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  &__letter {
+    border: 2px solid #FEEA61;
+    background: #FEFF88;
+    color: #333;
+    padding: 10px;
+  }
+  &__friend {
+    text-align: right;
+  }
+}

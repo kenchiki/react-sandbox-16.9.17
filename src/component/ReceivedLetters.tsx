@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Account from '../lib/Account'
@@ -18,8 +18,7 @@ const ReceivedLetters: React.FC = () => {
       await letter.fetchLetters()
       setState({ letters: letter.receivedLetters() })
     })()
-    // 一度だけしか実行したくないためsetStateを第二引数に設定
-  }, [setState])
+  }, [])
 
   const pickMessage = function (message: TootInfo): string {
     let content: string = message.last_status.content

@@ -7,24 +7,18 @@ const Nav: React.FC = () => {
   const isLogin: boolean = account.isLogin
 
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
+    <nav className="header-nav">
+      <ul className="header-nav__links">
         {
           (() => {
             if (isLogin) {
               return (
                 <>
                   <li>
-                    <Link to="/sent_letters">送った手紙</Link>
+                    <Link to="/received_letters">届いた手紙</Link>
                   </li>
                   <li>
-                    <Link to="/received_letters">届いた手紙</Link>
+                    <Link to="/sent_letters">送った手紙</Link>
                   </li>
                   <li>
                     <Link to="/logout">ログアウト</Link>
@@ -40,6 +34,9 @@ const Nav: React.FC = () => {
             }
           })()
         }
+        <li>
+          <Link to="/about">説明書</Link>
+        </li>
       </ul>
     </nav>
   )
