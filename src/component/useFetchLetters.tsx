@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import Account from '../lib/Account'
-import Letter from '../lib/Letter'
-import { TootInfo } from '../interface'
+import Letter, { TootInfo } from '../lib/Letter'
 
 export enum FetchTypes {
   Sent, Received

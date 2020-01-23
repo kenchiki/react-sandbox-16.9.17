@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Account, { AccountInfo } from '../lib/Account'
-import { TootInfo } from '../interface'
+import { TootInfo } from '../lib/Letter'
 import useFetchLetters, { FetchTypes } from './useFetchLetters'
 
 const SentLetters: React.FC = () => {
