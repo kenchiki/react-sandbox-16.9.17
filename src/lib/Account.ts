@@ -1,6 +1,14 @@
 import qs from 'qs'
 import axios from 'axios'
-import { AccountInfo } from '../interface'
+
+export interface AccountInfo {
+  id: string;
+  url: string;
+  // eslint-disable-next-line camelcase
+  display_name: string;
+  username: string;
+  avatar: string;
+}
 
 export default class Account {
   // client、tokenどちらを取得する際も同一のものを指定する必要あり（認証のところで無効と表示されてしまうため）

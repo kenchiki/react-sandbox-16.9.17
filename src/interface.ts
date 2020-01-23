@@ -1,11 +1,4 @@
-export interface AccountInfo {
-  id: string;
-  url: string;
-  // eslint-disable-next-line camelcase
-  display_name: string;
-  username: string;
-  avatar: string;
-}
+import { AccountInfo } from './lib/Account'
 
 export interface TootInfo {
   id: string;

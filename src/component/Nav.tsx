@@ -15,6 +15,9 @@ const Nav: React.FC = () => {
               return (
                 <>
                   <li>
+                    <Link to="/write_letter">お手紙をかく</Link>
+                  </li>
+                  <li>
                     <Link to="/received_letters">届いた手紙</Link>
                   </li>
                   <li>

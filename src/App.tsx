@@ -9,6 +9,7 @@ import Logout from './component/Logout'
 import OauthCallback from './component/OauthCallback'
 import ReceivedLetters from './component/ReceivedLetters'
 import SentLetters from './component/SentLetters'
+import WriteLetter from './component/WriteLetter'
 
 import {
   Switch,
@@ -43,6 +44,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/logout">
               <Logout />
+            </Route>
+            <Route path="/write_letter">
+              <WriteLetter />
             </Route>
             <Route path="/oauth_callback">
               <OauthCallback />

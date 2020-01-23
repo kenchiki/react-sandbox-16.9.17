@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { AccountInfo, TootInfo } from '../interface'
-import Account from '../lib/Account'
+import { TootInfo } from '../interface'
+import Account, { AccountInfo } from '../lib/Account'
 
 export default class Letter {
   public letters: Array<TootInfo> = []

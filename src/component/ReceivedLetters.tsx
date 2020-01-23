@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { AccountInfo, TootInfo } from '../interface'
+import { TootInfo } from '../interface'
 import useFetchLetters, { FetchTypes } from './useFetchLetters'
+import { AccountInfo } from '../lib/Account'
 
 const ReceivedLetters: React.FC = () => {
   const accountSelector: any = useSelector((state: any) => state.account)
@@ -54,7 +55,6 @@ const ReceivedLetters: React.FC = () => {
                           </div>
                         </li>
                       ))}
-
                     </ul>
                   </div>
                 </div>
