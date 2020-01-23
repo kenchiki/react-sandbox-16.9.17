@@ -5,9 +5,6 @@ import Account from '../lib/Account'
 import Letter from '../lib/Letter'
 import { AccountInfo, TootInfo } from '../interface'
 
-const account = new Account()
-const letter = new Letter(account)
-
 const SentLetters: React.FC = () => {
   const [state, setState] = useState({ letters: [] } as { letters: Array<TootInfo> })
   const accountSelector: any = useSelector((state: any) => state.account)
@@ -15,6 +12,8 @@ const SentLetters: React.FC = () => {
 
   useEffect(() => {
     (async () => {
+      const account = new Account()
+      const letter = new Letter(account)
       await letter.fetchLetters()
       setState({ letters: letter.sentLetters() })
     })()
