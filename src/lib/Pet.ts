@@ -39,6 +39,7 @@ export default class Pet {
   private step: number = 0;
   private resolve: any | null = null
   private account: Account;
+  private intervalId: number = 0;
 
   // 初期化
   constructor (account: Account) {
@@ -53,6 +54,10 @@ export default class Pet {
     this.setInterval()
   }
 
+  public destroy () {
+    window.clearInterval(this.intervalId);
+  }
+
   public listenDelivery () {
     return new Promise((resolve) => {
       this.step = 0
@@ -62,7 +67,7 @@ export default class Pet {
   }
 
   private setInterval () {
-    window.setInterval(() => { this.interval() }, 20)
+    this.intervalId = window.setInterval(() => { this.interval() }, 20)
   }
 
   private interval () {

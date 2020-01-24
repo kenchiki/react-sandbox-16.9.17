@@ -1,4 +1,5 @@
 import { ActionTypes } from './ActionTypes'
+import Account from '../lib/Account'
 
 export const login = () => ({
   type: ActionTypes.Login,
@@ -8,4 +9,9 @@ export const login = () => ({
 export const logout = () => ({
   type: ActionTypes.Logout,
   payload: {}
+})
+
+export const resetPet = (account: Account) => ({
+  type: ActionTypes.ResetPet,
+  payload: { account }
 })

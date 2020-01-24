@@ -1,3 +1,3 @@
 export enum ActionTypes {
-  Login, Logout
+  Login, Logout, ResetPet
 }

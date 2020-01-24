@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import Pet from '../lib/Pet'
 
 const Component: React.FC = () => {
+  const [visibleModal, setVisibleModal] = useState(true)
   const [to, setTo] = useState('')
   const [body, setBody] = useState('')
   const [follows, setFollows] = useState([] as Array<AccountInfo>)
@@ -44,12 +45,13 @@ const Component: React.FC = () => {
     try {
       // TODO: 入力チェック
       const letter = new Letter(account)
-      history.push('/')
+      setVisibleModal(false)
       await pet.listenDelivery()
       await letter.send(pickTo(to), body)
+      history.push('/')
     } catch (error) {
       // TODO: エラー処理
-      alert('エラー')
+      alert('send error')
     }
   }
 
@@ -63,31 +65,39 @@ const Component: React.FC = () => {
 
   return (
     <div className="login">
-      <div className="modal">
-        <div className="modal__header">お手紙をかく
-          <Link to="/">×</Link>
-        </div>
-        <div className="modal__in">
-          <div className="form-group mt-0">
-            <label htmlFor="to" className="col-form-label">宛先:</label>
-            <input type="text" onChange={changeTo} value={to} className="form-control" id="to" autoComplete="on" list="friends" />
-            <datalist id="friends">
-              {follows.map(follow => (
-                <option key={follow.id} value={pickToLabel(follow)} />
-              ))}
-            </datalist>
-          </div>
+      {
+        (() => {
+          if (visibleModal) {
+            return (
+              <div className="modal">
+                <div className="modal__header">お手紙をかく
+                  <Link to="/">×</Link>
+                </div>
+                <div className="modal__in">
+                  <div className="form-group mt-0">
+                    <label htmlFor="to" className="col-form-label">宛先:</label>
+                    <input type="text" onChange={changeTo} value={to} className="form-control" id="to" autoComplete="on" list="friends"/>
+                    <datalist id="friends">
+                      {follows.map(follow => (
+                        <option key={follow.id} value={pickToLabel(follow)}/>
+                      ))}
+                    </datalist>
+                  </div>
 
-          <div className="form-group mt-0">
-            <label htmlFor="body" className="col-form-label">お手紙の内容:</label>
-            <textarea onChange={changeBody} value={body} className="form-control" id="body" rows={5} />
-          </div>
+                  <div className="form-group mt-0">
+                    <label htmlFor="body" className="col-form-label">お手紙の内容:</label>
+                    <textarea onChange={changeBody} value={body} className="form-control" id="body" rows={5}/>
+                  </div>
 
-          <div className="form-group">
-            <input type="button" value="送る" onClick={send} className="form-control btn btn-danger" />
-          </div>
-        </div>
-      </div>
+                  <div className="form-group">
+                    <input type="button" value="送る" onClick={send} className="form-control btn btn-danger"/>
+                  </div>
+                </div>
+              </div>
+            )
+          }
+        })()
+      }
     </div>
   )
 }

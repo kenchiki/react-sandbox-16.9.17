@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import Account from '../lib/Account'
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,16 +15,18 @@ const OauthCallback: React.FC = () => {
     return query.get('code')!
   }
 
-  (async () => {
-    try {
-      await account.fetchToken(pickCode(query))
-      dispatch(login())
-      history.push('/')
-    } catch (error) {
-      // TODO: エラー処理
-      alert('エラー')
-    }
-  })()
+  useEffect(() => {
+    (async () => {
+      try {
+        await account.fetchToken(pickCode(query))
+        dispatch(login())
+        history.push('/')
+      } catch (error) {
+        // TODO: エラー処理
+        alert('oauth error')
+      }
+    })()
+  }, [])
 
   return (
     <div>

@@ -18,7 +18,7 @@ const Login: React.FC = () => {
       await account.login(state.url)
     } catch (error) {
       // TODO: エラー処理
-      alert('エラー')
+      alert('login error')
     }
   }
 
