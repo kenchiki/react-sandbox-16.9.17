@@ -15,3 +15,8 @@ export const resetPet = (account: Account) => ({
   type: ActionTypes.ResetPet,
   payload: { account }
 })
+
+export const setMessage = (message: string) => ({
+  type: ActionTypes.SetMessage,
+  payload: { message }
+})

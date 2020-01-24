@@ -40,6 +40,7 @@ export default class Pet {
   private resolve: any | null = null
   private account: Account;
   private intervalId: number = 0;
+  private setMessage: Function | null = null;
 
   // 初期化
   constructor (account: Account) {
@@ -68,6 +69,10 @@ export default class Pet {
 
   private setInterval () {
     this.intervalId = window.setInterval(() => { this.interval() }, 20)
+  }
+
+  public passSetMessage (setMessage: Function) {
+    this.setMessage = setMessage
   }
 
   private interval () {
@@ -305,6 +310,7 @@ export default class Pet {
   private setFree (action: ActionInfo = this.randomFree()) {
     if (this.freeStatus.finish) this.freeStatus.finish.apply(this)
     this.freeStatus = action
+    this.setMessage!(this.message())
     this.clearFrame()
     this.removeClass()
     this.actionInit()

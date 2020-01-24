@@ -14,6 +14,7 @@ import WriteLetter from './component/WriteLetter'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from './redux/actions'
+
 import Account from './lib/Account'
 
 import {
@@ -29,6 +30,9 @@ const App: React.FC = () => {
   const singletonSelector: any = useSelector((state: any) => state.singleton)
   const account: Account = singletonSelector.account
   const dispatch: any = useDispatch()
+
+  const messageSelector: any = useSelector((state: any) => state.message)
+  const message: string = messageSelector.message
 
   useEffect(() => {
     if (account.isLogin()) dispatch(login())
@@ -56,7 +60,7 @@ const App: React.FC = () => {
                 }
               </div>
             </div>
-            <p id="footer-status"></p>
+            <p id="footer-status">{message}</p>
           </div>
           <Switch>
             <Route path="/about">
