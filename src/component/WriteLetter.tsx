@@ -3,12 +3,17 @@ import { Link, useHistory } from 'react-router-dom'
 import Account, { AccountInfo } from '../lib/Account'
 import Letter from '../lib/Letter'
 import Friend from '../lib/Friend'
+import { useSelector } from 'react-redux'
+import Pet from '../lib/Pet'
 
 const Component: React.FC = () => {
   const [to, setTo] = useState('')
   const [body, setBody] = useState('')
   const [follows, setFollows] = useState([] as Array<AccountInfo>)
   const history = useHistory()
+  const singletonSelector: any = useSelector((state: any) => state.singleton)
+  const account: Account = singletonSelector.account
+  const pet: Pet = singletonSelector.pet
 
   const changeTo = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setTo(e.target.value)
@@ -28,7 +33,6 @@ const Component: React.FC = () => {
     const to: Array<string> | null = toLabel.match(/<@([^@]+)@([^@]+)>/)
     if (to === null) return ''
 
-    const account = new Account()
     const accountInfo: AccountInfo = account.info!
     const accountHost = new URL(accountInfo.url).host
     // 同じサーバーの人はドメインがいらないので分岐
@@ -39,10 +43,10 @@ const Component: React.FC = () => {
     e.preventDefault()
     try {
       // TODO: 入力チェック
-      const account = new Account()
       const letter = new Letter(account)
-      await letter.send(pickTo(to), body)
       history.push('/')
+      await pet.listenDelivery()
+      await letter.send(pickTo(to), body)
     } catch (error) {
       // TODO: エラー処理
       alert('エラー')
@@ -51,7 +55,6 @@ const Component: React.FC = () => {
 
   useEffect(() => {
     (async () => {
-      const account = new Account()
       const friend = new Friend(account)
       await friend.fetchFollows()
       setFollows(friend.follows)

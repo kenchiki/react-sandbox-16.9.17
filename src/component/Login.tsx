@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Account from '../lib/Account'
+import { useSelector } from 'react-redux'
 
 const Login: React.FC = () => {
   const [state, setState] = useState({ url: process.env.REACT_APP_MASTODON_ORIGIN } as { url: string })
+  const singletonSelector: any = useSelector((state: any) => state.singleton)
+  const account: Account = singletonSelector.account
 
   const changeUrl = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setState({ url: e.target.value })
@@ -12,7 +15,6 @@ const Login: React.FC = () => {
   const login = async (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault()
     try {
-      const account = new Account()
       await account.login(state.url)
     } catch (error) {
       // TODO: エラー処理

@@ -1,21 +1,22 @@
 import React from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import Account from '../lib/Account'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../redux/actions'
 
 const OauthCallback: React.FC = () => {
   const query = new URLSearchParams(useLocation().search)
   const history = useHistory()
+  const dispatch: any = useDispatch()
+  const singletonSelector: any = useSelector((state: any) => state.singleton)
+  const account: Account = singletonSelector.account
 
   const pickCode = (query: URLSearchParams): string => {
     return query.get('code')!
   }
-  const dispatch: any = useDispatch();
 
   (async () => {
     try {
-      const account = new Account()
       await account.fetchToken(pickCode(query))
       dispatch(login())
       history.push('/')

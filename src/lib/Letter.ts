@@ -18,6 +18,7 @@ export default class Letter {
   private to: string | null = null
   private body: string | null = null
   private account: Account;
+  static readonly FETCH_LIMIT: number = 20
 
   constructor (account: Account) {
     this.account = account
@@ -37,7 +38,7 @@ export default class Letter {
 
   public async fetchLetters () {
     const response = await axios.get(`${this.account.mastodonUrl}/api/v1/conversations`, {
-      params: { limit: 10 },
+      params: { limit: Letter.FETCH_LIMIT },
       headers: { Authorization: `Bearer ${this.account.token}` }
     })
     this.letters = response.data

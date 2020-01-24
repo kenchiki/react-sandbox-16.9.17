@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import 'bootstrap'
-import './stylesheets/application.scss'
+import './assets/stylesheets/application.scss'
+
 import Pet from './component/Pet'
 import About from './component/About'
 import Nav from './component/Nav'
@@ -11,12 +12,28 @@ import ReceivedLetters from './component/ReceivedLetters'
 import SentLetters from './component/SentLetters'
 import WriteLetter from './component/WriteLetter'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from './redux/actions'
+import Account from './lib/Account'
+
 import {
   Switch,
-  Route, BrowserRouter as Router
+  Route,
+  BrowserRouter as Router
 } from 'react-router-dom'
 
 const App: React.FC = () => {
+  const accountSelector: any = useSelector((state: any) => state.account)
+  const isLogin: boolean = accountSelector.isLogin
+
+  const singletonSelector: any = useSelector((state: any) => state.singleton)
+  const account: Account = singletonSelector.account
+  const dispatch: any = useDispatch()
+
+  useEffect(() => {
+    if (account.isLogin()) dispatch(login())
+  }, [])
+
   return (
     <div id="app">
       <Router>
@@ -28,9 +45,15 @@ const App: React.FC = () => {
                 <Nav />
               </header>
               <div id="content">
-                <div v-if="isLogin()">
-                  <Pet />
-                </div>
+                {
+                  (() => {
+                    if (isLogin) {
+                      return (
+                        <Pet />
+                      )
+                    }
+                  })()
+                }
               </div>
             </div>
             <p id="footer-status"></p>

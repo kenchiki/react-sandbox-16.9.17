@@ -139,3 +139,81 @@
     text-align: right;
   }
 }
+
+#house {
+  width: 500px;
+  height: 400px;
+  position: relative;
+}
+
+#hitTest {
+  width: 100%;
+  height: 100%;
+}
+
+#background {
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+  background-image: url('../images/background.png');
+  position: absolute;
+}
+
+#post {
+  width: 58px;
+  height: 82px;
+  background-size: 100% 100%;
+  background-image: url('../images/post_none.png');
+  left: 80px;
+  top: 240px;
+  position: absolute;
+  &.letter {
+    background-image: url('../images/post_letter.png');
+  }
+}
+
+#door {
+  width: 95px;
+  height: 105px;
+  background-size: 100% 100%;
+  background-image: url('../images/door_close.png');
+  left: 280px;
+  top: 20px;
+  position: absolute;
+  &.open {
+    background-image: url('../images/door_open.png');
+  }
+}
+
+#pet {
+  position: absolute;
+  background-size: 100% 100%;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  display: none;
+
+  &:after {
+    content: '';
+    position: absolute;
+    background-image: none;
+    width: 20px;
+    height: 20px;
+    background-size: 100% 100%;
+    left: -10px;
+    top: -10px;
+    display: block;
+  }
+
+  &.sleep:after {
+    background-image: url('../images/sleep.png');
+  }
+
+  &.stroke:after {
+    background-image: url('../images/stroke.png');
+  }
+
+  &.hit:after {
+    background-image: url('../images/hit.png');
+  }
+}

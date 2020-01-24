@@ -1,9 +1,7 @@
 import { ActionTypes } from './ActionTypes'
-import Account from '../lib/Account'
 
-const account = new Account()
 const initialState = {
-  isLogin: account.isLogin()
+  isLogin: false
 }
 
 interface Action {

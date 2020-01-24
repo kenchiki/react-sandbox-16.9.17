@@ -5,7 +5,7 @@ import Account, { AccountInfo } from '../lib/Account'
 import { TootInfo } from '../lib/Letter'
 import useFetchLetters, { FetchTypes } from './useFetchLetters'
 
-const SentLetters: React.FC = () => {
+const Component: React.FC = () => {
   const accountSelector: any = useSelector((state: any) => state.account)
   const isLogin: boolean = accountSelector.isLogin
   const letters: Array<TootInfo> = useFetchLetters(FetchTypes.Sent)
@@ -69,4 +69,4 @@ const SentLetters: React.FC = () => {
   )
 }
 
-export default SentLetters
+export default Component

@@ -1,13 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import Pet, { PetStatus } from '../lib/Pet'
+import { useSelector } from 'react-redux'
+import Account from '../lib/Account'
+import Letter from '../lib/Letter'
+import { FetchTypes } from './useFetchLetters'
 
-const template = (props: { }) => {
+const Component: React.FC = () => {
+  const singletonSelector: any = useSelector((state: any) => state.singleton)
+  const pet: Pet = singletonSelector.pet
+
+  useEffect(() => {
+    pet.init()
+    // TODO: クリーンアップでinitされたものをすべて削除する（アバターなど）
+  }, [])
+
   return (
-    <div>
-      <p>ペットが入ります</p>
+    <div id="house">
+      <div id="background"></div>
+      <canvas id="hitTest">
+        図形を表示するには、canvasタグをサポートしたブラウザが必要です。
+      </canvas>
+      <div id="door"></div>
+      <div id="pet"></div>
+      <div id="post"></div>
     </div>
   )
 }
 
-const Pet = React.memo(template)
-
-export default Pet
+export default Component
