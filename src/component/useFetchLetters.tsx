@@ -19,7 +19,7 @@ const useFetchLetters = (type: FetchTypes): Array<TootInfo> => {
       const letters = type === FetchTypes.Received ? letter.receivedLetters() : letter.sentLetters()
       setState({ letters: letters })
     })()
-  }, [type])
+  }, [account, type])
 
   return state.letters
 }

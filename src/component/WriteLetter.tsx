@@ -61,7 +61,7 @@ const Component: React.FC = () => {
       await friend.fetchFollows()
       setFollows(friend.follows)
     })()
-  }, [])
+  }, [account])
 
   return (
     <div className="login">

@@ -35,8 +35,10 @@ const App: React.FC = () => {
   const message: string = messageSelector.message
 
   useEffect(() => {
+    // accountがログイン済みならisLoginをtrueにする
     if (account.isLogin()) dispatch(login())
-  }, [])
+    console.log('login check by account')
+  }, [account, dispatch])
 
   return (
     <div id="app">
