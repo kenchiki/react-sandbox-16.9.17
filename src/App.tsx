@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import 'bootstrap'
 import './assets/stylesheets/application.scss'
 
-import Pet from './component/Pet'
+import House from './component/House'
 import About from './component/About'
 import Nav from './component/Nav'
 import Login from './component/Login'
@@ -55,7 +55,7 @@ const App: React.FC = () => {
                   (() => {
                     if (isLogin) {
                       return (
-                        <Pet />
+                        <House />
                       )
                     }
                   })()
