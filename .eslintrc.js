@@ -1,7 +1,8 @@
 module.exports = {
   env: {
     browser: true,
-    es6: true
+    es6: true,
+    jest: true
   },
   extends: [
     'plugin:react/recommended',
@@ -24,5 +25,6 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
+    '@typescript-eslint/no-unused-vars': [2, { args: 'none' }]
   }
 }
