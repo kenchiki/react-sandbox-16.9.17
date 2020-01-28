@@ -69,6 +69,7 @@ export default class Account {
       `${this.mastodonUrl}/api/v1/apps`,
       postParams
     )
+
     this.setStorage({ key: 'client_id', value: response.data.client_id })
     this.setStorage({ key: 'client_secret', value: response.data.client_secret })
   }
@@ -85,7 +86,7 @@ export default class Account {
     // https://docs.joinmastodon.org/api/authentication/#get-oauth-authorize
     const authUrl = new URL(`${this.mastodonUrl}/oauth/authorize`)
     authUrl.search = qs.stringify(getParams)
-    document.location.href = authUrl.href
+    window.location.href = authUrl.href
   }
 
   // codeからtoken取得
